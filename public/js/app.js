@@ -20261,7 +20261,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(75);
-module.exports = __webpack_require__(222);
+module.exports = __webpack_require__(223);
 
 
 /***/ }),
@@ -64545,7 +64545,7 @@ var normalizeComponent = __webpack_require__(73)
 /* script */
 var __vue_script__ = __webpack_require__(220)
 /* template */
-var __vue_template__ = __webpack_require__(221)
+var __vue_template__ = __webpack_require__(222)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -64589,6 +64589,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ListService__ = __webpack_require__(221);
 //
 //
 //
@@ -64622,19 +64623,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['operations'],
 
     data: function data() {
         return {
-            data: []
+            dataList: {}
         };
     },
 
     computed: {
         hasData: function hasData() {
-            return this.data.length > 0;
+            return this.dataList.length > 0;
+        }
+    },
+    mounted: function mounted() {
+        this.getData();
+        console.log('Component mounted.');
+    },
+
+    methods: {
+        getData: function getData() {
+            var _this = this;
+
+            __WEBPACK_IMPORTED_MODULE_0__services_ListService__["a" /* default */].getData(function (data) {
+                return _this.dataList = data;
+            }, function (response) {
+                return console.log(response);
+            });
         }
     }
 
@@ -64642,6 +64661,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 221 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    getData: function getData(success, error) {
+        window.axios.get('/api/list').then(function (response) {
+            success(response.data);
+        }).catch(function (e) {
+            error(e);
+        });
+    }
+});
+
+/***/ }),
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -64657,25 +64691,25 @@ var render = function() {
           [
             _vm._m(0),
             _vm._v(" "),
-            _vm._l(_vm.row, function(data) {
+            _vm._l(_vm.dataList, function(row) {
               return _vm.hasData
                 ? _c("tr", [
-                    _c("td", [_vm._v(_vm._s(_vm.row.id))]),
+                    _c("td", [_vm._v(_vm._s(row.id))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.row.name))]),
+                    _c("td", [_vm._v(_vm._s(row.name))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.row.bedrooms))]),
+                    _c("td", [_vm._v(_vm._s(row.bedrooms))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.row.bathrooms))]),
+                    _c("td", [_vm._v(_vm._s(row.bathrooms))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.row.storeys))]),
+                    _c("td", [_vm._v(_vm._s(row.storeys))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.row.garages))]),
+                    _c("td", [_vm._v(_vm._s(row.garages))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.row.price))])
+                    _c("td", [_vm._v(_vm._s(row.price))])
                   ])
                 : _c("tr", [
-                    _vm._v("\n                   no data\n               ")
+                    _vm._v("\n                    no data\n                ")
                   ])
             })
           ],
@@ -64717,7 +64751,7 @@ if (false) {
 }
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

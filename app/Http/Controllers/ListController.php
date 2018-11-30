@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 class ListController extends Controller
 {
     //
-    public function index(Request $request)
+    public function getList(Request $request)
     {
-        return view('index');
+        $list = PriceList::all();
+        return $list;
     }
 }
