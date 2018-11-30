@@ -16,12 +16,12 @@ window.Vue = require('vue');
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-BootstrapVue = require( 'bootstrap-vue');
-
+// BootstrapVue = require( 'bootstrap-vue');
+import 'axios-progress-bar/dist/nprogress.css';
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('list-component', require('./components/ListComponent.vue'));
 
-Vue.use(BootstrapVue);
+// Vue.use(BootstrapVue);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 

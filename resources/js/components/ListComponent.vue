@@ -66,6 +66,7 @@
 
 <script>
     import ListService from '../services/ListService'
+    import { loadProgressBar } from 'axios-progress-bar'
 
     export default {
         data() {
@@ -102,6 +103,7 @@
             },
             onSearch()
             {
+                loadProgressBar()
                 ListService.searchData(
                     this.searchCriteria,
                     data => {
