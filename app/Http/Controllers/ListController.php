@@ -10,7 +10,14 @@ class ListController extends Controller
     //
     public function getList(Request $request)
     {
-        $list = PriceList::all();
+        $searchCriteria = $request->get('searchCriteria',[]);
+        if (empty($searchCriteria))
+        {
+            return PriceList::all();
+        }
+
+        $list = PriceList::complexSearch($searchCriteria)->get();
+
         return $list;
     }
 }

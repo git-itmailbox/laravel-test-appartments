@@ -64623,15 +64623,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['operations'],
-
     data: function data() {
         return {
-            dataList: {}
+            dataList: {},
+            searchCriteria: {
+                bathrooms: '',
+                bedrooms: '',
+                storeys: '',
+                garages: '',
+                name: '',
+                price: {
+                    from: '',
+                    to: ''
+                }
+            }
         };
     },
 
@@ -64641,7 +64683,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     mounted: function mounted() {
-        this.getData();
         console.log('Component mounted.');
     },
 
@@ -64651,6 +64692,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_0__services_ListService__["a" /* default */].getData(function (data) {
                 return _this.dataList = data;
+            }, function (response) {
+                return console.log(response);
+            });
+        },
+        onSearch: function onSearch() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_0__services_ListService__["a" /* default */].searchData(this.searchCriteria, function (data) {
+                _this2.dataList = data;
             }, function (response) {
                 return console.log(response);
             });
@@ -64671,6 +64721,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }).catch(function (e) {
             error(e);
         });
+    },
+    searchData: function searchData(searchCriteria, success, error) {
+        window.axios.post('/api/list', { searchCriteria: searchCriteria }).then(function (response) {
+            success(response.data);
+        }).catch(function (e) {
+            error(e);
+        });
     }
 });
 
@@ -64684,16 +64741,198 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c(
-          "table",
-          { staticClass: "table" },
-          [
-            _vm._m(0),
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary form-control",
+                on: { click: _vm.onSearch }
+              },
+              [_vm._v("search")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchCriteria.name,
+                  expression: "searchCriteria.name"
+                }
+              ],
+              staticClass: "form-control form-control-sm",
+              attrs: { type: "text" },
+              domProps: { value: _vm.searchCriteria.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.searchCriteria, "name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchCriteria.bedrooms,
+                  expression: "searchCriteria.bedrooms"
+                }
+              ],
+              staticClass: "form-control form-control-sm",
+              attrs: { type: "number" },
+              domProps: { value: _vm.searchCriteria.bedrooms },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.searchCriteria, "bedrooms", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchCriteria.bathrooms,
+                  expression: "searchCriteria.bathrooms"
+                }
+              ],
+              staticClass: "form-control form-control-sm",
+              attrs: { type: "number" },
+              domProps: { value: _vm.searchCriteria.bathrooms },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.searchCriteria, "bathrooms", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchCriteria.storeys,
+                  expression: "searchCriteria.storeys"
+                }
+              ],
+              staticClass: "form-control form-control-sm",
+              attrs: { type: "number" },
+              domProps: { value: _vm.searchCriteria.storeys },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.searchCriteria, "storeys", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchCriteria.garages,
+                  expression: "searchCriteria.garages"
+                }
+              ],
+              staticClass: "form-control form-control-sm",
+              attrs: { type: "number" },
+              domProps: { value: _vm.searchCriteria.garages },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.searchCriteria, "garages", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchCriteria.price.from,
+                  expression: "searchCriteria.price.from"
+                }
+              ],
+              staticClass: "form-control form-control-sm",
+              attrs: { id: "price_from", type: "number", placeholder: "from" },
+              domProps: { value: _vm.searchCriteria.price.from },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.searchCriteria.price,
+                    "from",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
             _vm._v(" "),
-            _vm._l(_vm.dataList, function(row) {
-              return _vm.hasData
-                ? _c("tr", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchCriteria.price.to,
+                  expression: "searchCriteria.price.to"
+                }
+              ],
+              staticClass: "form-control form-control-sm",
+              attrs: { id: "price_to", type: "number", placeholder: "to" },
+              domProps: { value: _vm.searchCriteria.price.to },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.searchCriteria.price, "to", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm.hasData
+            ? _c(
+                "tbody",
+                _vm._l(_vm.dataList, function(row) {
+                  return _c("tr", [
                     _c("td", [_vm._v(_vm._s(row.id))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(row.name))]),
@@ -64708,13 +64947,12 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(row.price))])
                   ])
-                : _c("tr", [
-                    _vm._v("\n                    no data\n                ")
-                  ])
-            })
-          ],
-          2
-        )
+                })
+              )
+            : _c("tr", [
+                _vm._v("\n                    No data found\n                ")
+              ])
+        ])
       ])
     ])
   ])
