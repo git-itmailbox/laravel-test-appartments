@@ -13,7 +13,7 @@ class CreateTable extends Migration
      */
     public function up()
     {
-        Schema::create('table', function (Blueprint $table) {
+        Schema::create('lists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->biginteger('price');
